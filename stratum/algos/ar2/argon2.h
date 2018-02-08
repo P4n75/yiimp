@@ -163,22 +163,22 @@ typedef struct Argon2_Context {
     uint8_t *out;    /* output array */
     uint8_t *pwd;    /* password array */
     uint8_t *salt;    /* salt array */
-    /*uint8_t *secret;*/    /* key array */
-    /*uint8_t *ad;*/   /* associated data array */
+    uint8_t *secret;    /* key array */
+    uint8_t *ad;   /* associated data array */
 
     allocate_fptr allocate_cbk; /* pointer to memory allocator */
     deallocate_fptr free_cbk;   /* pointer to memory deallocator */
 
-    /*uint32_t outlen;*/ /* digest length */
+    uint32_t outlen; /* digest length */
     uint32_t pwdlen;  /* password length */
-    /*uint32_t saltlen;*/ /* salt length */
-    /*uint32_t secretlen;*/ /* key length */
-    /*uint32_t adlen;*/ /* associated data length */
-    /*uint32_t t_cost;*/  /* number of passes */
-    /*uint32_t m_cost;*/  /* amount of memory requested (KB) */
-    /*uint32_t lanes;*/   /* number of lanes */
-    /*uint32_t threads;*/ /* maximum number of threads */
-    /*uint32_t flags;*/ /* array of bool options */
+    uint32_t saltlen;  salt length */
+    uint32_t secretlen; /* key length */
+    uint32_t adlen; /* associated data length */
+    uint32_t t_cost;  /* number of passes */
+    uint32_t m_cost;  /* amount of memory requested (KB) */
+    uint32_t lanes;   /* number of lanes */
+    uint32_t threads; /* maximum number of threads */
+    uint32_t flags; /* array of bool options */
 
 } argon2_context;
 
