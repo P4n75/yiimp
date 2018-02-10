@@ -79,7 +79,8 @@ static void store_block(void *output, const block *src) {
 }
 
 /***************Memory allocators*****************/
-int allocate_memory(block **memory, uint32_t m_cost) {
+int allocate_memory(const argon2_context *context, uint8_t **memory,
+                    size_t num, size_t size) {
     if (memory != NULL) {
         size_t memory_size = sizeof(block) * m_cost;
         if (m_cost != 0 &&
@@ -111,7 +112,8 @@ void clear_memory(argon2_instance_t *instance, int clear) {
     }
 }
 
-void free_memory(block *memory) { free(memory); }
+void free_memory(const argon2_context *context, uint8_t *memory,
+                 size_t num, size_t size) { free(memory); }
 
 void finalize(const argon2_context *context, argon2_instance_t *instance) {
     if (context != NULL && instance != NULL) {
