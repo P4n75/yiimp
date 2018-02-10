@@ -171,7 +171,7 @@ typedef struct Argon2_Context {
 
     uint32_t outlen; /* digest length */
     uint32_t pwdlen;  /* password length */
-    uint32_t saltlen;  salt length */
+    uint32_t saltlen;  /* salt length */
     uint32_t secretlen; /* key length */
     uint32_t adlen; /* associated data length */
     uint32_t t_cost;  /* number of passes */
