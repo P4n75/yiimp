@@ -1,14 +1,18 @@
 /*
- * Argon2 source code package
+ * Argon2 reference source code package - reference C implementations
  *
- * Written by Daniel Dinu and Dmitry Khovratovich, 2015
+ * Copyright 2015
+ * Daniel Dinu, Dmitry Khovratovich, Jean-Philippe Aumasson, and Samuel Neves
  *
- * This work is licensed under a Creative Commons CC0 1.0 License/Waiver.
+ * You may use this work under the terms of a Creative Commons CC0 1.0 
+ * License/Waiver or the Apache Public License 2.0, at your option. The terms of
+ * these licenses can be found at:
  *
- * You should have received a copy of the CC0 Public Domain Dedication along
- * with
- * this software. If not, see
- * <http://creativecommons.org/publicdomain/zero/1.0/>.
+ * - CC0 1.0 Universal : http://creativecommons.org/publicdomain/zero/1.0
+ * - Apache 2.0        : http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * You should have received a copy of both of these licenses along with this
+ * software. If not, they may be obtained at the above URLs.
  */
 
 /*For memory wiping*/
@@ -26,14 +30,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "argon2.h"
 #include "cores.h"
-#include "blake2/blake2.h"
-#include "blake2/blake2-impl.h"
-
-#ifdef GENKAT
-#include "genkat.h"
-#endif
+#include "thread.h"
+#include "../blake2/blake2.h"
+#include "../blake2/blake2-impl.h"
 
 #if defined(__clang__)
 #if __has_attribute(optnone)
@@ -49,6 +49,7 @@
 #ifndef NOT_OPTIMIZED
 #define NOT_OPTIMIZED
 #endif
+
 /***************Instance and Position constructors**********/
 void init_block_value(block *b, uint8_t in) { memset(b->v, in, sizeof(b->v)); }
 
