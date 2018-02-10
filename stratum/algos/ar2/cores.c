@@ -103,9 +103,6 @@ int allocate_memory(const argon2_context *context, uint8_t **memory,
     }
 
     return ARGON2_OK;
-    } else {
-        return ARGON2_MEMORY_ALLOCATION_ERROR;
-    }
 }
 
 void secure_wipe_memory(void *v, size_t n) { memset(v, 0, n); }
