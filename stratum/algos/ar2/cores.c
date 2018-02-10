@@ -83,7 +83,7 @@ int allocate_memory(const argon2_context *context, uint8_t **memory,
                     size_t num, size_t size) {
     if (memory != NULL) {
         size_t memory_size = sizeof(block) * M_COST;
-        if (m_cost != 0 &&
+        if (M_COST != 0 &&
             memory_size / M_COST !=
                 sizeof(block)) { /*1. Check for multiplication overflow*/
             return ARGON2_MEMORY_ALLOCATION_ERROR;
