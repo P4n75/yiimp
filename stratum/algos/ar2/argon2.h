@@ -182,6 +182,10 @@ typedef struct Argon2_Context {
 
 } argon2_context;
 
+typedef enum Argon2_type {
+  Argon2_d = 0
+} argon2_type;
+
 /**
  * Function to hash the inputs in the memory-hard fashion (uses Argon2i)
  * @param  out  Pointer to the memory where the hash digest will be written
