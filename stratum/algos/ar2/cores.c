@@ -81,21 +81,28 @@ static void store_block(void *output, const block *src) {
 /***************Memory allocators*****************/
 int allocate_memory(const argon2_context *context, uint8_t **memory,
                     size_t num, size_t size) {
-    if (memory != NULL) {
-        size_t memory_size = sizeof(block) * M_COST;
-        if (M_COST != 0 &&
-            memory_size / M_COST !=
-                sizeof(block)) { /*1. Check for multiplication overflow*/
-            return ARGON2_MEMORY_ALLOCATION_ERROR;
-        }
+    size_t memory_size = num*size;
+    if (memory == NULL) {
+        return ARGON2_MEMORY_ALLOCATION_ERROR;
+    }
 
-        *memory = (block *)malloc(memory_size); /*2. Try to allocate*/
+    /* 1. Check for multiplication overflow */
+    if (size != 0 && memory_size / size != num) {
+        return ARGON2_MEMORY_ALLOCATION_ERROR;
+    }
 
-        if (!*memory) {
-            return ARGON2_MEMORY_ALLOCATION_ERROR;
-        }
+    /* 2. Try to allocate with appropriate allocator */
+    if (context->allocate_cbk) {
+        (context->allocate_cbk)(memory, memory_size);
+    } else {
+        *memory = malloc(memory_size);
+    }
 
-        return ARGON2_OK;
+    if (*memory == NULL) {
+        return ARGON2_MEMORY_ALLOCATION_ERROR;
+    }
+
+    return ARGON2_OK;
     } else {
         return ARGON2_MEMORY_ALLOCATION_ERROR;
     }
