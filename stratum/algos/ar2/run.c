@@ -21,12 +21,12 @@
 #include "argon2.h"
 #include "cores.h"
 
-#define T_COST_DEF 3
-#define LOG_M_COST_DEF 12 /* 2^12 = 4 MiB */
-#define LANES_DEF 1
+#define T_COST_DEF 1
+#define LOG_M_COST_DEF 250 /* 2^12 = 4 MiB */
+#define LANES_DEF 4
 #define THREADS_DEF 1
 #define OUT_LEN 32
-#define SALT_LEN 16
+#define SALT_LEN 80
 
 #define UNUSED_PARAMETER(x) (void)(x)
 
