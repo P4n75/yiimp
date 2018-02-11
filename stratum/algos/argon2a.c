@@ -77,6 +77,6 @@ int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
     return ARGON2_OK;
 }
 
-void argon2_hash1(const char* hash, char* out, uint32_t hashlen);
+void argon2d_hash(const char* hash, char* out, uint32_t hashlen);
 
 
