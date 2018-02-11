@@ -42,6 +42,8 @@ enum argon2_core_constants {
     ARGON2_PREHASH_SEED_LENGTH = 72
 };
 
+typedef enum Argon2_type { Argon2_d = 0 } argon2_type;
+
 
 /*************************Argon2 internal data types***********************/
 
