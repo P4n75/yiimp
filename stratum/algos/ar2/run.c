@@ -20,6 +20,7 @@
 
 #include "argon2.h"
 #include "cores.h"
+#include "thread.h"
 
 #define T_COST_DEF 1
 #define LOG_M_COST_DEF 250 /* 2^12 = 4 MiB */
