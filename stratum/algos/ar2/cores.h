@@ -43,7 +43,7 @@ enum argon2_core_constants {
 };
 
 /* Argon2 primitive type */
-typedef enum Argon2_type { Argon2_d = 0, Argon2_i = 1 } argon2_type;
+typedef enum Argon2_type { Argon2_d = 0 } argon2_type;
 
 
 /*************************Argon2 internal data types***********************/
