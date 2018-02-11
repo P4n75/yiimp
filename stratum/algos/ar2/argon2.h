@@ -211,6 +211,7 @@ typedef struct Argon2_Context {
 
     uint32_t flags; /* array of bool options */
 } argon2_context;
+    
 
 
 /*
