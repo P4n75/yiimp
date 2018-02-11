@@ -212,7 +212,9 @@ typedef struct Argon2_Context {
     uint32_t flags; /* array of bool options */
 } argon2_context;
     
-
+typedef enum Argon2_type {
+  Argon2_d = 0
+} argon2_type;
 
 /*
  * Function that gives the string representation of an argon2_type.
