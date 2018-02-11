@@ -57,6 +57,10 @@ int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
     context.allocate_cbk = NULL;
     context.free_cbk = NULL;
     context.flags = ARGON2_DEFAULT_FLAGS;
+    
+    if (hash) {
+    memcpy(hash, out, hashlen);
+    }
 
 }
 
