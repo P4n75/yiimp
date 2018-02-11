@@ -137,11 +137,6 @@ void fill_segment(const argon2_instance_t *instance,
 
         /* 1.2 Computing the index of the reference block */
         /* 1.2.1 Taking pseudo-random value from the previous block */
-        if (data_independent_addressing) {
-            pseudo_rand = pseudo_rands[i];
-        } else {
-            pseudo_rand = instance->memory[prev_offset].v[0];
-        }
 
         /* 1.2.2 Computing the lane of the reference block */
         ref_lane = ((pseudo_rand >> 32)) % 1;
