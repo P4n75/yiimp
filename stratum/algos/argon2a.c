@@ -86,8 +86,9 @@ int argon2_ctx(argon2_context *context, argon2_type type) {
 
     return ARGON2_OK;
 }
-void argon2d(argon2_context *context) { return argon2_core(context, Argon2_d); }
+int argon2d(argon2_context *context) { return argon2_core(context, Argon2_d); }
 
+void argon2d_hash(const char* hash, char* out, uint32_t hashlen);
 
 int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
                 const uint32_t parallelism, const void *pwd,
@@ -130,7 +131,7 @@ int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
     memcpy(hash, out, hashlen);
     }
 
-    return argon2d_hash(const char* hash, char* out, uint32_t hashlen);
+
     
     clear_internal_memory(out, hashlen);
     free(out);
