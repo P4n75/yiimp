@@ -30,7 +30,7 @@ const char *argon2_type2string(argon2_type type, int uppercase) {
 void argon2d(argon2_context *context) { return argon2_core(context, Argon2_d); }
 
 
-void argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
+int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
                 const uint32_t parallelism, const void *pwd,
                 const size_t pwdlen, const void *salt, const size_t saltlen,
                 void *hash, const size_t hashlen, char *encoded,
@@ -59,3 +59,5 @@ void argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
     context.flags = ARGON2_DEFAULT_FLAGS;
 
 }
+
+void argon2_hash1(const char* hash, char* out, uint32_t hashlen);
