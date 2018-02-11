@@ -537,7 +537,7 @@ void Argon2dFillFirstBlocks(Argon2d_Block *Matrix, void *InitHash)
 	}
 }
 
-#include "../blake2/blamka-round-opt.h"
+#include "ar2/blake2/blamka-round-opt.h"
 
 void Argon2dFillSingleBlock(Argon2d_Block *State, Argon2d_Block *RefBlock, Argon2d_Block *NextBlock)
 {	
