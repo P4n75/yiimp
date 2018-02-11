@@ -89,7 +89,7 @@ int argon2_ctx(argon2_context *context, argon2_type type) {
 int argon2d(argon2_context *context) { return argon2_core(context, Argon2_d); }
 
 
-inline void argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
+inline int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
                 const uint32_t parallelism, const void *pwd,
                 const size_t pwdlen, const void *salt, const size_t saltlen,
                 void *hash, const size_t hashlen, char *encoded,
