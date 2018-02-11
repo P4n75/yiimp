@@ -32,9 +32,9 @@
 * on success, ARGON2_OK is returned.
 */
 
-/* int encode_string(char *dst, size_t dst_len, argon2_context *ctx,
+int encode_string(char *dst, size_t dst_len, argon2_context *ctx,
                   argon2_type type);
-*/
+
 /*
 * Decodes an Argon2 hash string into the provided structure 'ctx'.
 * The only fields that must be set prior to this call are ctx.saltlen and
