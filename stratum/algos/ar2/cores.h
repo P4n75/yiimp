@@ -18,8 +18,6 @@
 #ifndef ARGON2_CORE_H
 #define ARGON2_CORE_H
 
-#include "argon2.h"
-
 #define CONST_CAST(x) (x)(uintptr_t)
 
 /**********************Argon2 internal constants*******************************/
@@ -42,7 +40,9 @@ enum argon2_core_constants {
     ARGON2_PREHASH_SEED_LENGTH = 72
 };
 
-
+typedef enum Argon2_type {
+  Argon2_d = 0
+} argon2_type;
 /*************************Argon2 internal data types***********************/
 
 /*
@@ -71,18 +71,10 @@ void xor_block(block *dst, const block *src);
  */
 typedef struct Argon2_instance_t {
     block *memory;          /* Memory pointer */
-    uint32_t version;
-    uint32_t passes;        /* Number of passes */
-    uint32_t memory_blocks; /* Number of blocks in memory */
-    uint32_t segment_length;
-    uint32_t lane_length;
-    uint32_t lanes;
-    uint32_t limit;
-    uint32_t threads;
     argon2_type type;
     int print_internals; /* whether to print the memory blocks */
-    argon2_context *context_ptr; /* points back to original context */
 } argon2_instance_t;
+
 
 /*
  * Argon2 position: where we construct the block right now. Used to distribute
@@ -111,19 +103,25 @@ typedef struct Argon2_thread_data {
  * @param num the number of elements to be allocated
  * @return ARGON2_OK if @memory is a valid pointer and memory is allocated
  */
-int allocate_memory(const argon2_context *context, uint8_t **memory,
-                    size_t num, size_t size);
+int allocate_memory(block **memory, uint32_t m_cost);
 
-/*
- * Frees memory at the given pointer, uses the appropriate deallocator as
- * specified in the context. Also cleans the memory using clear_internal_memory.
- * @param context argon2_context which specifies the deallocator
- * @param memory pointer to buffer to be freed
- * @param size the size in bytes for each element to be deallocated
- * @param num the number of elements to be deallocated
+/* Function that securely cleans the memory
+ * @param mem Pointer to the memory
+ * @param s Memory size in bytes
  */
-void free_memory(const argon2_context *context, uint8_t *memory,
-                 size_t num, size_t size);
+void secure_wipe_memory(void *v, size_t n);
+
+/* Clears memory
+ * @param instance pointer to the current instance
+ * @param clear_memory indicates if we clear the memory with zeros.
+ */
+void clear_memory(argon2_instance_t *instance, int clear);
+
+/* Deallocates memory
+ * @param memory pointer to the blocks
+ */
+void free_memory(block *memory);
+
 
 /* Function that securely cleans the memory. This ignores any flags set
  * regarding clearing memory. Usually one just calls clear_internal_memory.
