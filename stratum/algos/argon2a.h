@@ -7,12 +7,8 @@ extern "C" {
 
 #include <stdint.h>
 
-void argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
-                 const uint32_t parallelism, const void *pwd,
-                 const size_t pwdlen, const void *salt,
-                 const size_t saltlen, void *hash,
-                 const size_t hashlen);
-    
+void argon2_hash(const char* input, char* output, uint32_t len);
+  
 
 #ifdef __cplusplus
 }
