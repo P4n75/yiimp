@@ -20,7 +20,7 @@
 #include <string.h>
 #include <limits.h>
 #include "encoding.h"
-#include "core.h"
+#include "cores.h"
 
 /*
  * Example code for a decoder and encoder of "hash strings", with Argon2
