@@ -218,6 +218,7 @@ int verify_d(argon2_context *context, const char *hash);
 
 const char *error_message(int error_code);
 
+int encode_string(char *dst, size_t dst_len, argon2_context *ctx);
 
     
 #ifdef __AVX2__
