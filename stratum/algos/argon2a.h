@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 
-void WolfArgon2dPoWHash(void *Output, void *Matrix, const void *BlkHdr)
+void WolfArgon2dPoWHash(void *Output, void *Matrix, const void *BlkHdr);
 
 #ifdef __cplusplus
 }
