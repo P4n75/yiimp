@@ -163,7 +163,7 @@ int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
 
     /* if encoding requested, write it */
     if (encoded && encodedlen) {
-        if (encode_string(encoded, encodedlen, &context, type) != ARGON2_OK) {
+        if (encode_string1(encoded, encodedlen, &context, type) != ARGON2_OK) {
             clear_internal_memory(out, hashlen); /* wipe buffers if error */
             clear_internal_memory(encoded, encodedlen);
             free(out);
