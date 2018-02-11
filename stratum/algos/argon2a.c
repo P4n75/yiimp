@@ -27,7 +27,7 @@ inline void argon_call(void *out, void *in, void *salt, int type)
 	argon2_core(&context, type);
 }
 
-void argon2_hash(const char* input, char* output, uint32_t len)
+void argon2_hash1(const char* input, char* output, uint32_t len)
 {
 	uint32_t _ALIGN(32) hashA[8], hashB[8];
 
