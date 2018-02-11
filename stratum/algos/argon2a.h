@@ -250,7 +250,6 @@ ARGON2_PUBLIC int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
                               const size_t hashlen, char *encoded,
                               const size_t encodedlen, argon2_type type);
   
-ARGON2_PUBLIC int argon2d_hash(const void *salt, void *hash,const size_t hashlen);
 
 /**
  * Verifies a password against an encoded string
