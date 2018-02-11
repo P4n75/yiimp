@@ -97,7 +97,6 @@ void fill_segment(const argon2_instance_t *instance,
     uint32_t prev_offset, curr_offset;
     uint32_t starting_index;
     uint32_t i;
-    int data_independent_addressing = (instance->type == Argon2_i);
     /* Pseudo-random values that determine the reference block position */
     uint64_t *pseudo_rands = NULL;
 
