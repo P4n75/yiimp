@@ -7,7 +7,6 @@ extern "C" {
 
 #include <stdint.h>
 
-void argon2_hash(const char* input, char* output, uint32_t len);
   
 #ifdef A2_VISCTL
 #define ARGON2_PUBLIC __attribute__((visibility("default")))
