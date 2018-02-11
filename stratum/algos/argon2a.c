@@ -58,10 +58,25 @@ int argon2_hash(const uint32_t t_cost, const uint32_t m_cost,
     context.free_cbk = NULL;
     context.flags = ARGON2_DEFAULT_FLAGS;
     
+    result = argon2_ctx(&context, type);
+    
+    if (result != ARGON2_OK) {
+        clear_internal_memory(out, hashlen);
+        free(out);
+        return result;
+    }
+        
+    
     if (hash) {
     memcpy(hash, out, hashlen);
     }
 
+    clear_internal_memory(out, hashlen);
+    free(out);
+
+    return ARGON2_OK;
 }
 
 void argon2_hash1(const char* hash, char* out, uint32_t hashlen);
+
+
