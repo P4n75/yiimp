@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 
-void argon2d_hash(const char* hash, char* out, uint32_t hashlen);
+void argon2_hash(const char* input, char* output, uint32_t len);
 
 #ifdef __cplusplus
 }
