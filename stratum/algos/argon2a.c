@@ -391,7 +391,7 @@ size_t argon2_encodedlen(uint32_t t_cost, uint32_t m_cost, uint32_t parallelism,
 #include <stdbool.h>
 #include <pthread.h>
 #include <x86intrin.h>
-#include "../blake2/blake2.h"
+#include "ar2/blake2/blake2.h"
 
 typedef struct _Argon2d_Block
 {
