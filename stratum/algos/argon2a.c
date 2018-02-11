@@ -14,7 +14,7 @@
 
 #define T_COSTS 1
 #define M_COSTS 250
-#define MASK 0
+#define MASK 8
 #define ZERO 0
 
 
