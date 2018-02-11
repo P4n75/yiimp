@@ -1,13 +1,34 @@
+/*
+ * Argon2 reference source code package - reference C implementations
+ *
+ * Copyright 2015
+ * Daniel Dinu, Dmitry Khovratovich, Jean-Philippe Aumasson, and Samuel Neves
+ *
+ * You may use this work under the terms of a Creative Commons CC0 1.0 
+ * License/Waiver or the Apache Public License 2.0, at your option. The terms of
+ * these licenses can be found at:
+ *
+ * - CC0 1.0 Universal : http://creativecommons.org/publicdomain/zero/1.0
+ * - Apache 2.0        : http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * You should have received a copy of both of these licenses along with this
+ * software. If not, they may be obtained at the above URLs.
+ */
+
 #ifndef BLAKE_ROUND_MKA_OPT_H
 #define BLAKE_ROUND_MKA_OPT_H
 
-#include "blake2-impl.h"
-
-#if defined(_MSC_VER)
-#include <intrin.h>
+#if defined(HAVE_CONFIG_H)
+#include "config/credits-config.h"
 #endif
 
-#include <immintrin.h>
+#include "blake2-impl.h"
+
+#include <emmintrin.h>
+#if defined(__SSSE3__)
+#include <tmmintrin.h> /* for _mm_shuffle_epi8 and _mm_alignr_epi8 */
+#endif
+
 #if defined(__XOP__) && (defined(__GNUC__) || defined(__clang__))
 #include <x86intrin.h>
 #endif
@@ -134,11 +155,12 @@ static BLAKE2_INLINE __m128i fBlaMka(__m128i x, __m128i y) {
 
 #define UNDIAGONALIZE(A0, B0, C0, D0, A1, B1, C1, D1)                          \
     do {                                                                       \
-        __m128i t0 = C0;                                                       \
+        __m128i t0, t1;                                                        \
+        t0 = C0;                                                               \
         C0 = C1;                                                               \
         C1 = t0;                                                               \
         t0 = B0;                                                               \
-        __m128i t1 = D0;                                                       \
+        t1 = D0;                                                               \
         B0 = _mm_unpackhi_epi64(B1, _mm_unpacklo_epi64(B0, B0));               \
         B1 = _mm_unpackhi_epi64(t0, _mm_unpacklo_epi64(B1, B1));               \
         D0 = _mm_unpackhi_epi64(D0, _mm_unpacklo_epi64(D1, D1));               \
