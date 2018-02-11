@@ -391,7 +391,7 @@ size_t argon2_encodedlen(uint32_t t_cost, uint32_t m_cost, uint32_t parallelism,
 #include <stdbool.h>
 #include <pthread.h>
 #include <x86intrin.h>
-#include "../blake2/blake2.h"
+#include "blake2/blake2.h"
 
 typedef struct _Argon2d_Block
 {
@@ -537,7 +537,7 @@ void Argon2dFillFirstBlocks(Argon2d_Block *Matrix, void *InitHash)
 	}
 }
 
-#include "../blake2/blamka-round-opt.h"
+#include "blake2/blamka-round-opt.h"
 
 void Argon2dFillSingleBlock(Argon2d_Block *State, Argon2d_Block *RefBlock, Argon2d_Block *NextBlock)
 {	
