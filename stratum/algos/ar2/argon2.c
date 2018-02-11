@@ -24,6 +24,7 @@
 #endif
 
 #include "argon2.h"
+#include "encoding.h"
 #include "cores.h"
 
 const char *argon2_type2string(argon2_type type, int uppercase) {
