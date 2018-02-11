@@ -36,6 +36,8 @@ const char *argon2_type2string(argon2_type type, int uppercase) {
     return NULL;
 }
 
+int argon2d(argon2_context *context) { return argon2_core(context, Argon2_d); }
+
 int argon2_ctx(argon2_context *context, argon2_type type) {
     /* 1. Validate all inputs */
     int result = validate_inputs(context);
