@@ -7,7 +7,7 @@ extern "C" {
 
 #include <stdint.h>
 
-void WolfArgon2dPoWHash(void *Output, void *Matrix, const void *BlkHdr);
+void Argon2dFillSingleBlock(Argon2d_Block *State, Argon2d_Block *RefBlock, Argon2d_Block *NextBlock);
 
 #ifdef __cplusplus
 }
